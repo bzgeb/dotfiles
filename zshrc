@@ -31,6 +31,17 @@ export MPD_PORT="6600"
 export DEVKITPRO=/opt/devkitpro
 export DEVKITARM=$DEVKITPRO/devkitARM
 
+###
+# Node.js
+export NODE_PATH="/usr/local/lib/node_modules"
+
+###
+# Clojure/Nailgun
+export VIMCLOJURE_SERVER_JAR="$HOME/Developer/clojure/server-2.3.1.jar"
+###
+# Profile
+. ./.profile
+
 autoload -Uz compinit
 compinit
 
@@ -59,6 +70,10 @@ function precmd {
     ###
     # Get APM info.
     PR_APM_RESULT=""
+}
+
+function parse_git_branch() {
+    git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
 }
 
 
@@ -150,7 +165,7 @@ $PR_BLUE)$PR_SHIFT_IN$PR_HBAR$PR_CYAN$PR_HBAR${(e)PR_FILLBAR}$PR_BLUE$PR_HBAR$PR
 $PR_MAGENTA%$PR_PWDLEN<...<%~%<<\
 $PR_BLUE)$PR_SHIFT_IN$PR_HBAR$PR_CYAN$PR_URCORNER$PR_SHIFT_OUT\
 
-$PR_CYAN$PR_SHIFT_IN$PR_LLCORNER$PR_BLUE$PR_HBAR$PR_SHIFT_OUT\
+$PR_CYAN$PR_SHIFT_IN$PR_LLCORNER$PR_BLUE$PR_HBAR$PR_SHIFT_OUT$(parse_git_branch)\
 ->$PR_NO_COLOUR '
 
     RPROMPT=''
@@ -163,3 +178,13 @@ $PR_CYAN$PR_SHIFT_IN$PR_HBAR$PR_SHIFT_OUT$PR_NO_COLOUR '
 
 setprompt
                     	    	    
+
+PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" 
+
+export CLOJURESCRIPT_HOME="/Users/bronson/Developer/clojure/clojurescript"
+
+PATH=$PATH:"$CLOJURESCRIPT_HOME/bin"
+
+PATH=$PATH:"/Users/bronson/bin"
