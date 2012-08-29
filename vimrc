@@ -27,8 +27,24 @@ set laststatus=2
 :map <C-N> <Esc>:tabn<CR>
 :map <C-B> <Esc>:tabp<CR>
 inoremap kj <Esc>
+map ;; <Esc>:NERDTree<CR>
+map '' <Esc>:NERDTreeClose<CR>
 
 autocmd! BufNewFile * silent! 0r ~/.vim/templates/tmpl.%:e
 autocmd  BufEnter *.js inoremap <C-f> function () {}<Left>
 
 colorscheme ir_black
+filetype plugin indent on
+
+"Vimclojure
+let g:vimclojure#HighlightBuiltins = 1
+let g:vimclojure#ParenRainbow = 1
+let vimclojure#NailgunClient = "/usr/local/bin/ng"
+let vimclojure#WantNailgun = 1
+autocmd BufRead,BufNewFile *.cljs setlocal filetype=clojure
+autocmd BufRead,BufNewFile *.clj setlocal filetype=clojure
+au BufRead,BufNewFile *.scss set filetype=scss
+
+"===[ Format visual selection for JavaScript HTML strings ]===
+"" Visually select the lines to format and then press ;q to execute
+vmap <silent> ;q :s/^\(\s*\)\(.*\)\s*$/ \1 + '\2'/<CR>
