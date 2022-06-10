@@ -178,13 +178,4 @@ $PR_CYAN$PR_SHIFT_IN$PR_HBAR$PR_SHIFT_OUT$PR_NO_COLOUR '
 
 setprompt
                     	    	    
-
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
-
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" 
-
-export CLOJURESCRIPT_HOME="/Users/bronson/Developer/clojure/clojurescript"
-
-PATH=$PATH:"$CLOJURESCRIPT_HOME/bin"
-
 PATH=$PATH:"/Users/bronson/bin"
